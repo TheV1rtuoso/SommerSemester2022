@@ -1,0 +1,47 @@
+
+\documentclass[12pt]{article}
+\usepackage{fullpage,enumitem,amsmath,amssymb,graphicx}
+\usepackage{wasysym}
+\title{System Security Assignment 1}
+\author{Simon Hasir -- 7006072}
+
+\begin{document}
+    \maketitle
+    \section*{Aufgabe 1}
+    \begin{enumerate}[label=(\alph*)]
+    \item \begin{enumerate}[label=(\roman*)]
+        \item SELECT Geburtsjahr \\
+        FROM Personen JOIN Schüler*Innen \\
+        ON Wohnort='Saarland' AND Schulform = 'Grundschule' AND PID=SID;
+        \item SELECT Gehalt\\
+        FROM korregieren AS a JOIN Klausuren AS b\\
+         ON a.Klausur = b.KID AND b.Fach = 'Französisch'\\
+        JOIN unterichten AS c ON b.LehrerIn = c.LehrerIn \\
+        WHERE c.Wohnort = 'Saarbrücken' and c.Schulform = 'Grundschule'
+        \item SELECT name, min(note) \\
+        FROM Personen\\
+        JOIN SchülerIn ON PID=SID \\
+        JOIN korregieren ON  SID=SchülerIn\\
+        GROUP BY SID, name HAVING avg(note) $\le$ 3 
+    \end{enumerate} % Task a
+    \item \begin{enumerate}[label=(\roman*)]
+        \item $R1$ := Schüler*Innen $\Bowtie _{SID= Schueler*Innen}$ unterichten\\
+        $\sigma_{Fach='Geschichte' \land Klassenraum=202} (R1)$
+        \item $R1$ := korregieren $\Bowtie_{LehrerIn=LID}$ Lehrer*Innen\\
+        $R2$ := $\sigma_{Hauptfach='Physik' \land Gehalt>= 2000}$\\
+        $\pi$\textsubscript{MIN(Note)}($\sigma$\textsubscript{MAX(Note) $<$ 5}($\gamma$\textsubscript{LID, MIN(note), MAX(note)}))
+    \end{enumerate}
+    \end{enumerate}
+    \section*{Aufgabe 2}
+    \begin{enumerate}[label=(\alph*)]
+        \item SELECT SID, count(*)\\
+        Schüler*Innen AS s JOIN unterichten AS u 
+        \\ON s.klasenstufe = 5 WHERE  TIME(u.Datum) = 14 AND u.Fach = 'Erdkunde'\\
+        GROUP BY SID 
+        % What happens with Zeros
+        \item SELECT DISTINCT Klassenstufe \\
+        FROM Schüler as s JOIN korregieren as k ON s.SID = k.Schüler*Innen
+        GROUP BY SID having count(*) = 5
+    \end{enumerate}
+
+\end{document}
