@@ -10,10 +10,10 @@
     \section*{Aufgabe 1}
     \begin{enumerate}[label=(\alph*)]
     \item \begin{enumerate}[label=(\roman*)]
-        \item SELECT Geburtsjahr \\
+        \item SELECT DISTINCT Geburtsjahr \\
         FROM Personen JOIN Schüler*Innen \\
         ON Wohnort='Saarland' AND Schulform = 'Grundschule' AND PID=SID;
-        \item SELECT Gehalt\\
+        \item SELECT DISTINCT Dauer\\
         FROM korregieren AS a JOIN Klausuren AS b\\
          ON a.Klausur = b.KID AND b.Fach = 'Französisch'\\
         JOIN unterichten AS c ON b.LehrerIn = c.LehrerIn \\
@@ -29,19 +29,41 @@
         $\sigma_{Fach='Geschichte' \land Klassenraum=202} (R1)$
         \item $R1$ := korregieren $\Bowtie_{LehrerIn=LID}$ Lehrer*Innen\\
         $R2$ := $\sigma_{Hauptfach='Physik' \land Gehalt>= 2000}$\\
-        $\pi$\textsubscript{MIN(Note)}($\sigma$\textsubscript{MAX(Note) $<$ 5}($\gamma$\textsubscript{LID, MIN(note), MAX(note)}))
+        $\pi$\textsubscript{MIN(Note)}($\sigma$\textsubscript{MAX(Note) $<$ 5}($\gamma$\textsubscript{LID, MIN(note), MAX(note)}(R2)))
     \end{enumerate}
     \end{enumerate}
     \section*{Aufgabe 2}
     \begin{enumerate}[label=(\alph*)]
+        \item \begin{enumerate}[label=(\roman*)]
         \item SELECT SID, count(*)\\
         Schüler*Innen AS s JOIN unterichten AS u 
-        \\ON s.klasenstufe = 5 WHERE  TIME(u.Datum) = 14 AND u.Fach = 'Erdkunde'\\
+        \\ON s.klasenstufe = 5 \\
         GROUP BY SID 
+        HAVING u.Uhrzeit = 14 AND u.Fach = 'Erdkunde'
         % What happens with Zeros
-        \item SELECT DISTINCT Klassenstufe \\
+        \item SELECT SID, Klassenstufe \\
         FROM Schüler as s JOIN korregieren as k ON s.SID = k.Schüler*Innen
         GROUP BY SID having count(*) = 5
+        \item SELECT SID, avg(Gehalt) FROM \\
+        (SELECT avg(Gehalt) FROM Lehrer l JOIN unterichten u on u.LehrerIn = l.LID WHERE Fach=Sport 
+        \\GRUOP BY l.LID, u.SchuelerIn having count(*) = 4)
+        JOIN  
+        \end{enumerate}
+        \item \begin{enumerate}[label=(\roman*)]
+            \item Geburtsjahr der Personen die auf dem Gymnasium sind und deren Wohnort mit 'brücken' aufhört, 
+            wobei die Jahreszahl einmalig ist. Die Geburtsjahr sind absteigendnach der Klassenstufe der Schueler sotiert einmalig ist. Die Geburtsjahr sind absteigend 
+            nach der Klassenstufe der Schueler sotiert,
+            \item Die Lehrer und das Datum des ersten unterichts, 
+            welche das Fach 'Musik' unterichten und noch nie eine 6 gegeben hat.
+        \end{enumerate}
+
     \end{enumerate}
+    \section*{Aufgabe 3}
+    \begin{enumerate}
+        \item HAVING ohne GROUPBY
+        \item WHERE hinter GROUPBY
+        \item Umbennenung nach Accessing 
+    \end{enumerate}
+
 
 \end{document}

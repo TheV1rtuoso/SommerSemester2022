@@ -1,0 +1,110 @@
+
+
+           \documentclass[12pt]{article}
+           \usepackage{fullpage,enumitem,amsmath,amssymb,graphicx}
+           
+           \title{Colloquium 5 - Concurrent Programming}
+           \author{Simon Hasir -- 7006072}
+           
+           \usepackage{listings}
+           
+           \begin{document}
+             \maketitle
+             \noindent
+             \rule{\linewidth}{0.4pt}
+             
+           \section{TE-1}
+           \begin{enumerate}[label=(\alph*)]
+               \item No, it's a destructive channel, only one reciever but inititially it's \textit{"send} to all 
+               \item  No, it runs the first case with a matching condition and chooses the defaults non deterministically
+               \item  No, intchan1 is asynchronous and doesn't wait for a receiver whereas intchan only continues with execution when the massage is fetched by another agent.
+               \item  No, when every agent terminates
+               \item  Yes, if you fetch from a sync channel without any input
+           \end{enumerate}
+           \section{TE-2}
+           \begin{enumerate}[label=(\alph*)]
+               \item return; oder mainAgent(){};
+               \item void x() \{...\}
+               \item \begin{lstlisting}
+mainAgent {
+        select {
+            default: {
+                P
+            }
+            default: {
+                P
+            }
+        }
+}
+                    \end{lstlisting} 
+                \item $\alpha;P;$
+                \item \begin{lstlisting}
+mainAgent {
+        start(P());
+        start(Q());
+}
+                \end{lstlisting} 
+            \end{enumerate}
+    \section{TE-3}
+    \begin{enumerate}[label=(\alph*)]
+        \item 
+    \begin{lstlisting}
+    mainAgent {
+    stringchan toastchan;
+    boolchan ready, go;
+
+    // A toaster with two slots..
+    start(slot(toastchan, ready, go));
+    start(slot(toastchan, ready, go));
+    // ..and two users
+    start(user("Conny", toastchan));
+    start(user("Dieter", toastchan));
+    
+    for(int i = 0; i < 2; i++){
+        <? ready;
+    }
+    for(int i = 0; i < 2; i++){
+        go <! true;
+    }
+
+}
+
+void slot(stringchan toastchan, boolchan ready, boolchan go) {
+    ready <! true;
+    <? go; // wait for go before toasting
+    string toast = <? toastchan;
+    toastchan <! "Crispy " + toast;
+}
+    \end{lstlisting}
+    \item After l. 24, l. 25 can be run instead of slots(). Solution: another stringchan. toast = <? toastchan2 l.19 toastchan2 <! 
+    \end{enumerate}
+    \newpage
+    \section{TE-4}
+    \begin{enumerate}
+        \item fibonacci sequence
+        \item \begin{lstlisting}
+while (run) {
+    select {
+        case c <! v: {}
+        case u = <? c: {
+            int i = <? k;
+            if (i == n) { //terminate and send term signal
+                run = false;
+                b <! true;
+                println(v);
+            }
+            else {
+                k <! i+1; //inc counter
+                v = v + u;
+                c <! v;    
+            }  
+        }
+        case <?b: {
+            run = false;
+        }
+    };
+}
+        \end{lstlisting}
+    \end{enumerate}
+\end{document}
+

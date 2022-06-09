@@ -1,0 +1,28 @@
+CREATE VIEW purchases_filtered AS
+SELECT *, SUM(amount) 
+FROM purchases as p JOIN articles as a 
+ON p.article_id=a.id 
+WHERE date > DATE("1943-11-24", "-5 DAY") AND date <= DATE("1943-11-24") 
+GROUP BY citizen_id, article_id
+HAVING (label != 'Pickle' OR SUM(amount) == 0.5) AND 
+(label != 'Salad' OR SUM(amount) >= 0.5) AND         
+(label != 'Carrot' OR (SUM(amount) >= 1 AND SUM(amount) <= 3))
+
+CREATE VIEW purchases_filtered2 AS
+SELECT *, SUM(amount) 
+FROM purchases as p JOIN articles as a ON p.article_id=a.id 
+WHERE date > DATE("1943-11-24", "-5 DAY") AND date <= DATE("1943-11-24") 
+GROUP BY citizen_id, article_id
+HAVING (label != 'Pickle' OR SUM(amount) >= 0.5) AND 
+(label != 'Salad' OR SUM(amount) >= 0.5) AND         
+(label != 'Carrot' OR (SUM(amount) >= 1))
+
+SELECT c.firstname, c.lastname
+FROM (SELECT citizen_id FROM purchases_filtered2
+GROUP BY citizen_id 
+HAVING COUNT(*)=3) p JOIN  citizens c ON p.citizen_id = c.id ;
+
+-- pickles and carrots can be used for other things then just for the poison upper bounds my not be correct 
+-- if you leave out the upper bounds it's ambiguous and you have two suspects if you also consider the
+-- upper bounds for the amount it's only:
+-- Norman Bates, a serial killer known from books and movies.

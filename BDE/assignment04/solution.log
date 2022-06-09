@@ -1,12 +1,12 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.23 (TeX Live 2021/Arch Linux) (preloaded format=pdflatex 2022.5.2)  13 MAY 2022 11:51
+This is pdfTeX, Version 3.141592653-2.6-1.40.24 (TeX Live 2022/Arch Linux) (preloaded format=pdflatex 2022.5.16)  18 MAY 2022 17:39
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
  %&-line parsing enabled.
-**/home/simon/Documents/BDE/assignment04/solution.tex
-(/home/simon/Documents/BDE/assignment04/solution.tex
+**/home/simon/Documents/SommerSemester2022/BDE/assignment04/solution.tex
+(/home/simon/Documents/SommerSemester2022/BDE/assignment04/solution.tex
 LaTeX2e <2021-11-15> patch level 1
-L3 programming layer <2022-02-24> (/usr/share/texmf-dist/tex/latex/base/article.cls
+L3 programming layer <2022-04-10> (/usr/share/texmf-dist/tex/latex/base/article.cls
 Document Class: article 2021/10/04 v1.4n Standard LaTeX document class
 (/usr/share/texmf-dist/tex/latex/base/size12.clo
 File: size12.clo 2021/10/04 v1.4n Standard LaTeX file (size option)
@@ -121,7 +121,7 @@ Package: wasysym 2020/01/19 v2.4 Wasy-2 symbol support package
 LaTeX Font Info:    Overwriting symbol font `wasy' in version `bold'
 (Font)                  U/wasy/m/n --> U/wasy/b/n on input line 93.
 ) (/usr/share/texmf-dist/tex/latex/l3backend/l3backend-pdftex.def
-File: l3backend-pdftex.def 2022-02-07 L3 backend support: PDF output (pdfTeX)
+File: l3backend-pdftex.def 2022-04-14 L3 backend support: PDF output (pdfTeX)
 \l__color_backend_stack_int=\count273
 \l__pdf_internal_box=\box53
 ) (./solution.aux)
@@ -173,20 +173,20 @@ LaTeX Font Info:    Trying to load font information for U+wasy on input line 9.
 File: uwasy.fd 2020/01/19 v2.4 Wasy-2 symbol font definitions
 ) [1
 
-{/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map}] (./solution.aux) ) 
+{/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map}] [2] (./solution.aux) ) 
 Here is how much of TeX's memory you used:
- 3115 strings out of 478276
- 45389 string characters out of 5853014
- 336669 words of memory out of 5000000
- 21303 multiletter control sequences out of 15000+600000
+ 3138 strings out of 478238
+ 46182 string characters out of 5850456
+ 338687 words of memory out of 5000000
+ 21357 multiletter control sequences out of 15000+600000
  479587 words of font info for 70 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 55i,6n,62p,263b,335s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 55i,6n,62p,282b,364s stack positions out of 5000i,500n,10000p,200000b,80000s
 </usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx12.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi12.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi8.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmr12.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmr17.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmr8.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy6.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy8.pfb></usr/share/texmf-dist/fonts/type1/public/wasy-type1/wasy10.pfb>
-Output written on solution.pdf (1 page, 103675 bytes).
+Output written on solution.pdf (2 pages, 105585 bytes).
 PDF statistics:
- 58 PDF objects out of 1000 (max. 8388607)
- 34 compressed objects within 1 object stream
+ 61 PDF objects out of 1000 (max. 8388607)
+ 36 compressed objects within 1 object stream
  0 named destinations out of 1000 (max. 500000)
  1 words of extra memory for PDF output out of 10000 (max. 10000000)
 

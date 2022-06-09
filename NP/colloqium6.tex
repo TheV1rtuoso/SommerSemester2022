@@ -1,0 +1,37 @@
+
+
+\documentclass[12pt]{article}
+\usepackage{fullpage,enumitem,amsmath,amssymb,graphicx, hyperref}
+
+\title{Colloquium 5 - Concurrent Programming}
+\author{Simon Hasir -- 7006072}
+
+\usepackage{listings}
+           
+\begin{document}
+    \maketitle
+    \noindent
+    \rule{\linewidth}{0.4pt}
+    
+    \section{TF-1}
+    \begin{enumerate}[label=(\alph*)]
+        \item False, you can define recursive functions and call functions of the same monitor
+        without getting a new lock.
+        \item Not sure (True)
+        \item False, interleaving its still possible.
+        \item Yes. With locks at the begining and end, only problem are recursive calls.
+    \end{enumerate}
+    \section{TF-2}
+    \begin{enumerate}[label=(\alph*)]
+        \item Datarace if line 14 is executed before l.6.\\
+        Fix: Use the same lock for accesses to b.
+        \item Deadlock, if mainagent gets lock m2 and a1 gets lock m1. \\
+        Fix: Use the locks in the same order everytime.
+        \item Datarace, even if it doesnt impact the output, the program contains a paralell read and write on the same variable
+        Fix: Use the lock for l. 13 aswell.
+    \end{enumerate}
+    \section{TF-3}
+    \href{https://pseuco.com/#/edit/remote/qsdwbcrf6c970rdrtnmq}{See implementation}
+    
+\end{document}
+
