@@ -1,0 +1,66 @@
+
+
+\documentclass[12pt]{article}
+\usepackage{fullpage,enumitem,amsmath,amssymb,graphicx}
+
+\title{Colloquium G - Concurrent Programming}
+\author{Simon Hasir -- 7006072}
+
+\usepackage{listings}
+
+\begin{document}
+    \maketitle
+    \noindent
+    \rule{\linewidth}{0.4pt}
+             
+    \section{TE-1}
+    \begin{enumerate}[label=(\alph*)]
+        \item Yes, if java is executed with the \textit{-ea} flag which enables Assertions and the Exception is not handled.
+        \item No, this behavior would involve too much overhead.
+        \item No, not in the Bytecode
+        \item No, comments dont have any semantic ;)
+        \item Yes, \textit{await} just continues if it gets notified.
+        \item No, Linked Listed have to be monitors aswell.
+        \item Not really, \textit{synchronized} can be applied almost as flexible, the only problem is that only one lock per object is used.
+        \item Yes 
+        \item Yes, because multiple locks allow for more concurrency and potentially less lock blocking 
+        \item Yes, they are sequential in the \textit{synchronized} block.
+        \item Not always, only if you can ensure that \textit{notify} is called after \textit{wait}. 
+        \item Yes, safety violations can be found in finite executions and liveness problem only appear in infinite executions.
+        \item No, see the above
+        \item No, \textit{run()} is a sequential function which you can execute concurrently with \textit{Thread.start()}
+        \item Yes
+        \item Yes, \textit{wait()} stops execution.
+        \item Yes, \textit{notifyAll()} would be correct.
+        \item No, you can only make methods and blocks synchronized.
+        \item What is incorrect? But the signal call may valid, but the functionality may be impaired.
+        \item Yes.
+        \item No, it's a correctness property (finite).
+        \item False, liveness 
+        \item No, it only sets the boolean flag \textit{interrupted} (fetchable with \textit{isInterrupted()})
+        \item Yes
+    \end{enumerate}
+    \section{TG-2}
+    \begin{enumerate}
+        \item Monitor pseuCo -> explicit locks Java
+        \begin{enumerate}[label=(\alph*)]
+            \item Replace \textit{monitor X} in pseuCo with \textit{class X} in Java.
+            \item Add a \textit{private final}  intantice-wise lock $l$ in Java.
+            \item Replace condition $c$ with $b$ in pseuCo with \textit{private final $c$ = l.newCondition()} in Java.
+            \item Add lock at beginning of every function(wrapped in a try) and an unlock in the final block.
+            \item Replace waitForCondition($c$) in pseuCo with while ($!b$) c.await(); in Java
+        \end{enumerate}
+        \item Explicit locks Java -> Implicit Locks Java
+        \begin{enumerate}[label=(\alph*)]
+            \item remove explicit lock
+            \item Replace locking and unlocking with the \textit{synchronized} keyword in the function definition.
+            \item Replace c.await with wait();
+            \item Replace signal[All] with notify[All].
+            \item Add some kind of indication which was condition should be the one that was triggered.
+            \item Enjoy :)
+        \end{enumerate}
+    \end{enumerate}
+
+    \section{TG-3}3
+\end{document}
+

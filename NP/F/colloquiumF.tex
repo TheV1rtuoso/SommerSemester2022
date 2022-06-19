@@ -17,9 +17,9 @@
     \begin{enumerate}[label=(\alph*)]
         \item False, you can define recursive functions and call functions of the same monitor
         without getting a new lock.
-        \item Not sure (True)
+        \item True, but the deadlock problem is not solved.
         \item False, interleaving its still possible.
-        \item Yes. With locks at the begining and end, only problem are recursive calls.
+        \item Yes. With locks at the begining and end.
     \end{enumerate}
     \section{TF-2}
     \begin{enumerate}[label=(\alph*)]
@@ -27,8 +27,7 @@
         Fix: Use the same lock for accesses to b.
         \item Deadlock, if mainagent gets lock m2 and a1 gets lock m1. \\
         Fix: Use the locks in the same order everytime.
-        \item Datarace, even if it doesnt impact the output, the program contains a paralell read and write on the same variable
-        Fix: Use the lock for l. 13 aswell.
+        \item Valid, due to purely sequential execution.
     \end{enumerate}
     \section{TF-3}
     \href{https://pseuco.com/#/edit/remote/qsdwbcrf6c970rdrtnmq}{See implementation}
