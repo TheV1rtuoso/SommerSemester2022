@@ -15,45 +15,48 @@
              
     \section{TE-1}
     \begin{enumerate}[label=(\alph*)]
-        \item Yes, if java is executed with the \textit{-ea} flag which enables Assertions and the Exception is not handled.
-        \item No, this behavior would involve too much overhead.
-        \item No, not in the Bytecode
-        \item No, comments dont have any semantic ;)
-        \item Yes, \textit{await} just continues if it gets notified.
-        \item No, Linked Listed have to be monitors aswell.
-        \item Not really, \textit{synchronized} can be applied almost as flexible, the only problem is that only one lock per object is used.
+        \item Yes, but only if java is executed with the \textit{-ea} flag which enables Assertions.
+        \item No, this behavior would involve too much overhead, but it's implemented for some java classes.
+        \item No, not in the Bytecode.
+        \item No, comments don't have any semantic, but it's good practice. ;)
+        \item Kind of, \textit{await} just continues if it gets notified, BUT you have to check for the negation.
+        \item No, Linked Listed have to be monitors as well.
+        \item No, \textit{synchronized} can be applied almost as flexible, 
+        the only problem is that only one lock per object is used.
         \item Yes 
-        \item Yes, because multiple locks allow for more concurrency and potentially less lock blocking 
-        \item Yes, they are sequential in the \textit{synchronized} block.
-        \item Not always, only if you can ensure that \textit{notify} is called after \textit{wait}. 
+        \item Yes, because multiple locks lead to smaller wait sets, which makes \textit{notifyAll()} faster.
+        \item No, only if the class is a monitor that uses only implicit locking.
+        \item No, not even if you can ensure that \textit{notify()} is called after \textit{wait()}, because Java could 
+        wake up threads without signal as well $\Rightarrow$ you need a while loop. 
         \item Yes, safety violations can be found in finite executions and liveness problem only appear in infinite executions.
-        \item No, see the above
-        \item No, \textit{run()} is a sequential function which you can execute concurrently with \textit{Thread.start()}
+        \item No, see the above.
+        \item No, \textit{run()} is a sequential function which you can execute in a new Thread
+         with \textit{Thread.start()}
         \item Yes
         \item Yes, \textit{wait()} stops execution.
         \item Yes, \textit{notifyAll()} would be correct.
         \item No, you can only make methods and blocks synchronized.
-        \item What is incorrect? But the signal call may valid, but the functionality may be impaired.
+        \item The \textit{signal()} call is valid, but the functionality may be impaired (e.g. thread that prints wrong result after to signals).
         \item Yes.
-        \item No, it's a correctness property (finite).
-        \item False, liveness 
+        \item True, once it crashes it can't recover. You can give a finite execution.
         \item No, it only sets the boolean flag \textit{interrupted} (fetchable with \textit{isInterrupted()})
         \item Yes
     \end{enumerate}
     \section{TG-2}
     \begin{enumerate}
-        \item Monitor pseuCo -> explicit locks Java
+        \item Monitor pseuCo -$>$ explicit locks Java
         \begin{enumerate}[label=(\alph*)]
             \item Replace \textit{monitor X} in pseuCo with \textit{class X} in Java.
             \item Add a \textit{private final}  intantice-wise lock $l$ in Java.
             \item Replace condition $c$ with $b$ in pseuCo with \textit{private final $c$ = l.newCondition()} in Java.
-            \item Add lock at beginning of every function(wrapped in a try) and an unlock in the final block.
+            \item Add lock at beginning of every function(wrapped in a try) and an unlock in the final block. Add trowInterruptException.
             \item Replace waitForCondition($c$) in pseuCo with while ($!b$) c.await(); in Java
         \end{enumerate}
-        \item Explicit locks Java -> Implicit Locks Java
+        \item Explicit locks Java -$>$ Implicit Locks Java
         \begin{enumerate}[label=(\alph*)]
             \item remove explicit lock
             \item Replace locking and unlocking with the \textit{synchronized} keyword in the function definition.
+            \item Make every field private
             \item Replace c.await with wait();
             \item Replace signal[All] with notify[All].
             \item Add some kind of indication which was condition should be the one that was triggered.
@@ -61,6 +64,8 @@
         \end{enumerate}
     \end{enumerate}
 
-    \section{TG-3}3
+    \section{TG-3}
+    HashSet or Ringbuffer (of TreeSets) if you want good runtime, that save the counter for everyone in line,
+    increment on overtake and check that nobody is at the cap. 
 \end{document}
 

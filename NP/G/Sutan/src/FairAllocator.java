@@ -1,12 +1,10 @@
 import java.util.*;
 
-
+//Why is Java so unnecessary
 public class FairAllocator{
     private static final int MAX_OVERTAKING = 3;
     private int available ;
     private long turn = 0; //next ticket to be dispensed
-    Set<Long> overtakers = new HashSet<>();
-    PriorityQueue<Long> waitingTimes = new PriorityQueue<>(Collections.reverseOrder());
 
     private long next = 0; //next ticket to be served
 
@@ -46,5 +44,25 @@ public class FairAllocator{
             System.out.println("NOT!");
 
         }
+    }
+    private static class RingBuffer{
+        private List<TreeSet<Long>> overtakers = new ArrayList<>(MAX_OVERTAKING);
+        private TreeSet<Long> fixedQueue = new TreeSet<>();
+        private int curr_mod = 0;
+
+        public void add_new_to_queue(long ticket) {
+
+        }
+
+        public void exit_queue(long ticket) {
+            for (var x : overtakers) {
+                if (x.contains(ticket)) {
+                    for (var i :x.higher(ticket)) {
+
+                    }
+                }
+            }
+        }
+
     }
 }
